@@ -32,7 +32,7 @@ else
    echo "Brokers: $brokers"
 
     pkill -f "port-forward pods/$pod 9000:9000 -n $namespace" || true
-    kubectl cp ./kafkactl.sh $namespace/$pod:/tmp/kafkactl.sh -c $container
+    kubectl cp $0 $namespace/$pod:/tmp/kafkactl.sh -c $container
     kubectl exec $pod -n $namespace -c $container -- /bin/bash -c "/tmp/kafkactl.sh $brokers"
     kubectl port-forward pods/$pod 9000:9000 -n $namespace &
     /usr/bin/open -a "/Applications/Google Chrome.app" 'http://localhost:9000'
