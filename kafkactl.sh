@@ -11,7 +11,7 @@ if ! [ -z ${KUBERNETES_SERVICE_HOST+x} ]; then
     tar -xvzf jdk17.tgz
     curl -Lo kafkactl.tgz https://github.com/vimil-saju/kafkactl/releases/download/1.0.0/kafkactl.tar.gz
     tar -xvzf kafkactl.tgz
-    ./jdk-17.0.7+7/bin/java --add-opens=java.base/sun.nio.ch=ALL-UNNAMED -jar kafdrop.jar --kafka.brokerConnect=$1 --protobufdesc.directory=/tmp > /dev/null 2> /dev/null &
+    ./jdk-17.0.7+7/bin/java --add-opens=java.base/sun.nio.ch=ALL-UNNAMED -jar /tmp/kafkactl/kafdrop.jar --kafka.brokerConnect=$1 --protobufdesc.directory=/tmp/kafkactl > /dev/null 2> /dev/null &
 else
     read -p "Namespace: " namespace
     pods=( $(kubectl get pods --template '{{range .items}}{{.metadata.name}}{{" "}}{{end}}' -n $namespace) )
