@@ -9,8 +9,8 @@ if ! [ -z ${KUBERNETES_SERVICE_HOST+x} ]; then
     cd /tmp
     curl -Lo jdk17.tgz https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.7%2B7/OpenJDK17U-jdk_x64_linux_hotspot_17.0.7_7.tar.gz
     tar -xvzf jdk17.tgz
-    curl -Lo kafdrop.jar https://github.com/vimil-saju/otel-protoc/releases/download/1.0.0/kafdrop-4.0.0.jar
-    curl -Lo otel.desc https://github.com/vimil-saju/otel-protoc/raw/main/otel.desc
+    curl -Lo kafkactl.tgz https://github.com/vimil-saju/kafkactl/releases/download/1.0.0/kafkactl.tar.gz
+    tar -xvzf kafkactl.tgz
     ./jdk-17.0.7+7/bin/java --add-opens=java.base/sun.nio.ch=ALL-UNNAMED -jar kafdrop.jar --kafka.brokerConnect=$1 --protobufdesc.directory=/tmp > /dev/null 2> /dev/null &
 else
     read -p "Namespace: " namespace
